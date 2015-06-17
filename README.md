@@ -7,6 +7,6 @@ Planned:
   - Pandas and Monary integration for DataFrames
   - WebSocket (Tornado?)
 
-Project will not be posted here fully, please send me a message to ask about parts not on git. I will post a better explanation of all of the pieces as they are completed :)
+Project will not be posted here fully and is missing pieces for it to work. Please send me a message to ask about parts not on git if you're interested. I will post a better explanation of all of the classes as they are completed :)
 
 MIT license (subject to change)
