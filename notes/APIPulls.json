@@ -11,12 +11,27 @@ btc-e.com/api/3/depth/btc_usd-eur_usd-btc_eur?limit=2000&ignore_invalid=1
 
 btc-e.com/api/3/trades/btc_usd-eur_usd-btc_eur?limit=2000&ignore_invalid=1
 {"btc_usd":[
-{"type":"ask","price":232.73,"amount":0.375067,"tid":54950807,"timestamp":1432103824},{"type":"bid","price":233.057,"amount":0.363,"tid":54950806,"timestamp":1432103824},{"type":"bid","price":233.056,"amount":0.05,"tid":54950805,"timestamp":1432103824},{"type":"bid","price":233.057,"amount":0.0175,"tid":54950794,"timestamp":1432103674},{"type":"ask","price":232.73,"amount":0.241,"tid":54950792,"timestamp":1432103651},{"type":"ask","price":232.73,"amount":0.107017,"tid":54950787,"timestamp":1432103635},{"type":"ask","price":232.826,"amount":0.001,"tid":54950786,"timestamp":1432103635},{"type":"ask","price":232.826,"amount":0.01,"tid":54950769,"timestamp":1432103596},{"type":"ask","price":233.019,"amount":0.011,"tid":54950767,"timestamp":1432103550},{"type":"bid","price":233.057,"amount":0.170241,"tid":54950764,"timestamp":1432103466},{"type":"bid","price":232.838,"amount":0.009,"tid":54950759,"timestamp":1432103375},{"type":"ask","price":232.73,"amount":0.0426854,"tid":54950758,"timestamp":1432103354},{"type":"ask","price":232.839,"amount":0.011,"tid":54950736,"timestamp":1432103235},{"type":"bid","price":233.058,"amount":2.49614,"tid":54950731,"timestamp":1432103199}]}
+{"type":"ask","price":232.73,"amount":0.375067,"tid":54950807,"timestamp":1432103824},
+{"type":"bid","price":233.057,"amount":0.363,"tid":54950806,"timestamp":1432103824},
+{"type":"bid","price":233.056,"amount":0.05,"tid":54950805,"timestamp":1432103824},
+{"type":"bid","price":233.057,"amount":0.0175,"tid":54950794,"timestamp":1432103674},
+{"type":"ask","price":232.73,"amount":0.241,"tid":54950792,"timestamp":1432103651},
+{"type":"ask","price":232.73,"amount":0.107017,"tid":54950787,"timestamp":1432103635},
+{"type":"ask","price":232.826,"amount":0.001,"tid":54950786,"timestamp":1432103635},
+{"type":"ask","price":232.826,"amount":0.01,"tid":54950769,"timestamp":1432103596},
+{"type":"ask","price":233.019,"amount":0.011,"tid":54950767,"timestamp":1432103550},
+{"type":"bid","price":233.057,"amount":0.170241,"tid":54950764,"timestamp":1432103466},
+{"type":"bid","price":232.838,"amount":0.009,"tid":54950759,"timestamp":1432103375},
+{"type":"ask","price":232.73,"amount":0.0426854,"tid":54950758,"timestamp":1432103354},
+{"type":"ask","price":232.839,"amount":0.011,"tid":54950736,"timestamp":1432103235},
+{"type":"bid","price":233.058,"amount":2.49614,"tid":54950731,"timestamp":1432103199}]}
 
 #############################################################
 
 data.btcchina.com/data/trades?market=ltccny&limit=10000
-[{"date":"1432015875","price":8.98,"amount":18,"tid":"2918141"},{"date":"1432015875","price":8.98,"amount":15.334,"tid":"2918142"},{"date":"1432015875","price":8.98,"amount":0.995,"tid":"2918143"}]
+[{"date":"1432015875","price":8.98,"amount":18,"tid":"2918141"},
+ {"date":"1432015875","price":8.98,"amount":15.334,"tid":"2918142"},
+ {"date":"1432015875","price":8.98,"amount":0.995,"tid":"2918143"}]
 
 data.btcchina.com/data/orderbook?market=ltccny&limit=5000
 {"asks":[[1000000000,0.187],[99999999,1],[60000600,10],[9999999,0.03],[4999999,1],[1000000,1.1],[999999,104.676],[800000,1],[578321,121.987],[518000,0.002],[499999.99,0.9],[188888,0.001],[158888,0.001],[133888,0.001],[113688,0.001],[99999,0.4],[96368,0.001],[88888,0.001],[79368,0.001],[71368,0.001],[63888,0.001],[58368,0.001]],
@@ -34,10 +49,27 @@ api.bitfinex.com/v1/pubticker/btcusd?limit_bids=2000&limit_asks=2000
 {"mid":"232.25","bid":"232.21","ask":"232.29","last_price":"232.3","low":"231.19","high":"236.76","volume":"5563.25840789","timestamp":"1432102777.058263871"}
 
 api.bitfinex.com/v1/book/btcusd?limit_bids=2000&limit_asks=2000
-{"bids":[{"price":"232.2","amount":"10.0","timestamp":"1432102578.0"},{"price":"231.97","amount":"4.14907819","timestamp":"1432102845.0"},{"price":"231.95","amount":"3.3436","timestamp":"1432102844.0"},{"price":"231.75","amount":"4.1875","timestamp":"1432102839.0"},{"price":"231.74","amount":"11.1","timestamp":"1432102837.0"},{"price":"231.73","amount":"3.99965477","timestamp":"1432102828.0"}],
-"asks":[{"price":"232.23","amount":"1.987","timestamp":"1432102812.0"},{"price":"232.24","amount":"3.0","timestamp":"1432102807.0"},{"price":"232.25","amount":"9.49","timestamp":"1432102790.0"},{"price":"232.27","amount":"4.89322935","timestamp":"1432102811.0"},{"price":"232.42","amount":"2.01","timestamp":"1432102826.0"},{"price":"232.43","amount":"22.1315","timestamp":"1432102800.0"}]}
+{"bids":[{"price":"232.2","amount":"10.0","timestamp":"1432102578.0"},
+         {"price":"231.97","amount":"4.14907819","timestamp":"1432102845.0"},
+         {"price":"231.95","amount":"3.3436","timestamp":"1432102844.0"},
+         {"price":"231.75","amount":"4.1875","timestamp":"1432102839.0"},
+         {"price":"231.74","amount":"11.1","timestamp":"1432102837.0"},
+         {"price":"231.73","amount":"3.99965477","timestamp":"1432102828.0"}],
+"asks":[{"price":"232.23","amount":"1.987","timestamp":"1432102812.0"},
+        {"price":"232.24","amount":"3.0","timestamp":"1432102807.0"},
+        {"price":"232.25","amount":"9.49","timestamp":"1432102790.0"},
+        {"price":"232.27","amount":"4.89322935","timestamp":"1432102811.0"},
+        {"price":"232.42","amount":"2.01","timestamp":"1432102826.0"},
+        {"price":"232.43","amount":"22.1315","timestamp":"1432102800.0"}]}
 
 api.bitfinex.com/v1/trades/btcusd?limit_bids=2000&limit_asks=2000
-[{"timestamp":1432103215,"tid":6987677,"price":"232.2","amount":"0.02","exchange":"bitfinex","type":"sell"},{"timestamp":1432103047,"tid":6987675,"price":"232.22","amount":"0.1","exchange":"bitfinex","type":"buy"},{"timestamp":1432102789,"tid":6987673,"price":"232.21","amount":"2.0","exchange":"bitfinex","type":"sell"},{"timestamp":1432102789,"tid":6987671,"price":"232.21","amount":"4.49","exchange":"bitfinex","type":"sell"},{"timestamp":1432102759,"tid":6987669,"price":"232.3","amount":"0.1","exchange":"bitfinex","type":"buy"},{"timestamp":1432102659,"tid":6987667,"price":"232.31","amount":"0.01","exchange":"bitfinex","type":"buy"},{"timestamp":1432102541,"tid":6987665,"price":"232.31","amount":"0.5","exchange":"bitfinex","type":"buy"},{"timestamp":1432102489,"tid":6987663,"price":"232.36","amount":"0.055","exchange":"bitfinex","type":"buy"}]
+[{"timestamp":1432103215,"tid":6987677,"price":"232.2","amount":"0.02","exchange":"bitfinex","type":"sell"},
+ {"timestamp":1432103047,"tid":6987675,"price":"232.22","amount":"0.1","exchange":"bitfinex","type":"buy"},
+ {"timestamp":1432102789,"tid":6987673,"price":"232.21","amount":"2.0","exchange":"bitfinex","type":"sell"},
+ {"timestamp":1432102789,"tid":6987671,"price":"232.21","amount":"4.49","exchange":"bitfinex","type":"sell"},
+ {"timestamp":1432102759,"tid":6987669,"price":"232.3","amount":"0.1","exchange":"bitfinex","type":"buy"},
+ {"timestamp":1432102659,"tid":6987667,"price":"232.31","amount":"0.01","exchange":"bitfinex","type":"buy"},
+ {"timestamp":1432102541,"tid":6987665,"price":"232.31","amount":"0.5","exchange":"bitfinex","type":"buy"},
+ {"timestamp":1432102489,"tid":6987663,"price":"232.36","amount":"0.055","exchange":"bitfinex","type":"buy"}]
 
 
