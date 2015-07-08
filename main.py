@@ -5,7 +5,7 @@ import time
 import btc_connect
 
 ## Draft - Will need to change a lot of this :)
-# Add: exceptions, loop breaks, csv reader for timer values, ...
+# Add: exceptions, loop breaks, csv reader for timer values (config), ...
 
 print_lock = threading.Lock()
 

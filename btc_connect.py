@@ -25,7 +25,7 @@ class pubapi():
 
  def btce(url = "btc-e.com"):
   # limited to 15sec
-  methods = ['ticker', 'depth', 'trades'];
+  methods = ['ticker', 'depth']; # 'trades' (removing for now)
   pairs = ['btc_usd', 'eur_usd', 'btc_eur'];
   pairstring = "-".join(pairs)
   params = {"limit" : 2000, "ignore_invalid" : 1}
@@ -34,11 +34,12 @@ class pubapi():
   for meth in range(len(methods)):
    con_list.append("/api/3/%s" % methods[meth] + "/" + pairstring + "?" + url_values)
   pubapi.connects(url, con_list, methods, pairs)
+
  def bitfinex(url = "api.bitfinex.com"):
   ## ~1/sec
   ## https://api.bitfinex.com/v1/pubticker/btcusd
   ## btcusd, ltcusd, ltcbtc, drkusd, drkbtc
-  methods = ['pubticker', 'book', 'trades'];
+  methods = ['pubticker', 'book']; # 'trades' (removing for now)
   pairs = ['btcusd', 'drkusd', 'drkbtc'];
   params = {"limit_bids" : 2000, "limit_asks" : 2000}
   url_values = urllib.parse.urlencode(params)
@@ -54,19 +55,20 @@ class pubapi():
   ## market=all (ticker only?)
   ## limit=10000 (trades)	 ## limit=5000 ask/bid
   ## btccny, ltccny, btcltc
-  methods = ['orderbook', 'trades'];
+  methods = ['orderbook']; # 'trades' (removing for now)
   pairs = ['btccny', 'ltccny', 'btcltc'];  ## , "ltccny", "btcltc"
   params = {"limit" : 5000}
   ob_values = urllib.parse.urlencode(params)
   tparams = {"limit" : 10000}
   trades_values = urllib.parse.urlencode(tparams)
+  con_list = []
   ## Ticker (breaks filter)
   #pubapi.connects(url, "/data/ticker?market=all", "ticker", ("ticker_" for n in range(len(pairs))))
-  con_list = []
+  con_list.append("/data/ticker?market=all") # could break if more trades added
   for pair in range(len(pairs)):
    con_list.append("/data/%s" % methods[0] + "?market=" + pairs[pair] + "&" + ob_values)
-  for pair in range(len(pairs)): 
-   con_list.append("/data/%s" % methods[1] + "?market=" + pairs[pair] + "&" + trades_values)
+  #for pair in range(len(pairs)): 
+   #con_list.append("/data/%s" % methods[1] + "?market=" + pairs[pair] + "&" + trades_values)
   pubapi.connects(url, con_list, methods, pairs)
 
  ## Not using - market depth too shallow
