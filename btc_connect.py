@@ -10,15 +10,15 @@ import jsonfilter
 
 class pubapi():
 
- def connects(conn, con_list, meth, pair):
-  sconn = http.client.HTTPSConnection(conn)
+ def connects(url, con_list, meth, pair):
+  sconn = http.client.HTTPSConnection(url)
   jsdata = []
   for path in range(len(con_list)):
    sconn.request("GET", con_list[path])
    response = sconn.getresponse().read().decode()
    jsdata.append(json.loads(response))
-   print(conn+con_list[path])
-  jsonfilter.filters.jfstart(conn,meth,pair,jsdata)
+   print(url+con_list[path])
+  jsonfilter.filters.jfstart(url,meth,pair,jsdata)
 
  sconn.close()
  #end connects
@@ -34,6 +34,7 @@ class pubapi():
   for meth in range(len(methods)):
    con_list.append("/api/3/%s" % methods[meth] + "/" + pairstring + "?" + url_values)
   pubapi.connects(url, con_list, methods, pairs)
+  
  def bitfinex(url = "api.bitfinex.com"):
   ## ~1/sec
   ## https://api.bitfinex.com/v1/pubticker/btcusd
@@ -61,7 +62,7 @@ class pubapi():
   tparams = {"limit" : 10000}
   trades_values = urllib.parse.urlencode(tparams)
   ## Ticker (breaks filter)
-  #pubapi.connects(url, "/data/ticker?market=all", "ticker", ("ticker_" for n in range(len(pairs))))
+  # pubapi.connects(url, "/data/ticker?market=all", "ticker", ("ticker_" for n in range(len(pairs))))
   con_list = []
   for pair in range(len(pairs)):
    con_list.append("/data/%s" % methods[0] + "?market=" + pairs[pair] + "&" + ob_values)

@@ -1,4 +1,3 @@
 *.ini
-/.project
-jsonfilter.py
+.project
 btceapi_python3.py

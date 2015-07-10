@@ -1,0 +1,17 @@
+btce.pair{
+
+ "depth":{"utc":{"asks":[[],[],[],[]],"bids":[[],[],[],[]]}},
+ "ticker":{"utc":{["high":"","low":"","avg":"", "avg":"", ...]}}
+ "trades":{"utc":{[{},{},{}]}}
+
+}
+
+
+
+bitfinex.pair{   #as is.
+
+ "book":
+ "pubticker":
+ "trades":
+
+}
