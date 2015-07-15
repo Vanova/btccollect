@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import time
 
 #################### VERY rough draft.. not working.
 
@@ -12,23 +13,15 @@ class filters():
  def btce(m,p,jd):
   for l in range(len(m)):
    for n in range(len(p)):
-    print('btce: ',m[l],' ',p[n])
-  #mongo.mdump('btce', m, p, jd) Needs a good way to sort data in db.
+    print('btce: ', m[l], p[n])
+    mongo.mdump('btce', m[l], p[n], jd)
+   ## ?mongo.closeconnection()
   
  def bitfinex(m,p,jd):
-  for l in range(len(m)):
-   for n in range(len(p)):
-    print('bitfinex: ',m[l],' ',p[n])
 
  def btcchina(m,p,jd):
-  for l in range(len(m)):
-   for n in range(len(p)):
-    print('btcchina: ',m[l],' ',p[n])
 
  def kraken(m,p,jd):
-  for l in range(len(m)):
-   for n in range(len(p)):
-    print('kraken: ',m[l],' ',p[n])
 
  def jfstart(url, meth, pair, jsdata):
   exchanges = {"btc-e.com":"btce",
@@ -48,23 +41,13 @@ class mongo():
  def dbc(dbase,collection):
   db = client[dbase]  #client.dbase
   # db = client['test-database'] # dictionary access 
-
   coll = db[collection]  # collection = db['test-collection']
   print(coll)
   return coll
 
  def mdump(mpath, m, p, jd):
-  if len(m)+len(p)>len(jd):
-   for l in range(len(m)):
-    for n in range(len(p)): ######### l -> method set
-	 
-     mongo.dbc(mpath,m[l]).insert_one(jd[l]).inserted_id
-     print('To DB: ',mongo.dbc(mpath,m[l]))
-  else:
-   for l in range(len(m)):
-    for n in range(len(p)): ######### l -> method set
-     mongo.dbc(mpath,m[l]).insert_one(jd[l+n]).inserted_id
-     print('To DB: ',mongo.dbc(mpath,m[l]))
+  mongo.dbc(mpath,m).insert_one(jd).inserted_id ###### DB.COLL.UTC[JDATA]
+  print('To DB: ',mongo.dbc(mpath,m,p))
   
 ## Client Connection
 # uri = "mongodb://myuser:mypass@sub.server.com:0000/mydb"
