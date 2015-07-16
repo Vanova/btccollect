@@ -10,6 +10,7 @@ class filters():
 #	data[pair]["asks","bids"][n,n]
 # trades:
 #	data[pair]
+
  def btce(m,p,jd):
   for l in range(len(m)):
    for n in range(len(p)):
