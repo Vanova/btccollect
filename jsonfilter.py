@@ -11,13 +11,14 @@ class filters():
 # trades:
 #	data[pair]
  def btce(m,p,jd):
+  stamp=time.time()
   for l in range(len(m)):
-   for n in range(len(p)):
-    print('btce: ', m[l], p[n])
-    mongo.mdump('btce', m[l], p[n], jd)
+   print('btce: ', m[l], p)
+   mongo.mdump('btce', m[l], stamp, jd)
    ## ?mongo.closeconnection()
   
  def bitfinex(m,p,jd):
+  
 
  def btcchina(m,p,jd):
 
@@ -45,9 +46,9 @@ class mongo():
   print(coll)
   return coll
 
- def mdump(mpath, m, p, jd):
-  mongo.dbc(mpath,m).insert_one(jd).inserted_id ###### DB.COLL.UTC[JDATA]
-  print('To DB: ',mongo.dbc(mpath,m,p))
+ def mdump(mpath, m, stamp, jd):
+  mongo.dbc(mpath,m).insert_one({stamp:{jd}}).inserted_id ###### DB.COLL.UTC[JDATA]
+  print('To DB: ',mongo.dbc(mpath,m,stamp))
   
 ## Client Connection
 # uri = "mongodb://myuser:mypass@sub.server.com:0000/mydb"
