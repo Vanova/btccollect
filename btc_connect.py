@@ -1,13 +1,14 @@
 import urllib.request, urllib.parse, urllib.error
 import http.client
-# import simplejson as json    
-import json			# replace w/ ujson or simplejson? (needs C binary)
+# import simplejson as json
+import json	# replace w/ ujson or simplejson? (needs C binary)
 import pprint
 import hashlib
 import hmac
 import time
 import jsonfilter
 
+############ Public API ##############
 class pubapi():
 
  def connects(url, con_list, meth, pair):
@@ -19,10 +20,11 @@ class pubapi():
    jsdata.append(json.loads(response))
    print(url+con_list[path])
   jsonfilter.filters.jfstart(url,meth,pair,jsdata)
+  
+  sconn.close()
+  #end connects
 
- sconn.close()
- #end connects
-
+ #trades
  def btce(url = "btc-e.com"):
   # limited to 15sec
   methods = ['ticker', 'depth']; # 'trades' (removing for now)
@@ -34,7 +36,7 @@ class pubapi():
   for meth in range(len(methods)):
    con_list.append("/api/3/%s" % methods[meth] + "/" + pairstring + "?" + url_values)
   pubapi.connects(url, con_list, methods, pairs)
-  
+
  def bitfinex(url = "api.bitfinex.com"):
   ## ~1/sec
   ## https://api.bitfinex.com/v1/pubticker/btcusd
@@ -64,12 +66,10 @@ class pubapi():
   con_list = []
   ## Ticker (breaks filter)
   # pubapi.connects(url, "/data/ticker?market=all", "ticker", ("ticker_" for n in range(len(pairs))))
-  con_list = []
-  #pubapi.connects(url, "/data/ticker?market=all", "ticker", ("ticker_" for n in range(len(pairs))))
-  con_list.append("/data/ticker?market=all") # could break if more trades added
+  con_list.append("/data/ticker?market=all")
   for pair in range(len(pairs)):
    con_list.append("/data/%s" % methods[0] + "?market=" + pairs[pair] + "&" + ob_values)
-  #for pair in range(len(pairs)): 
+  #for pair in range(len(pairs)):
    #con_list.append("/data/%s" % methods[1] + "?market=" + pairs[pair] + "&" + trades_values)
   pubapi.connects(url, con_list, methods, pairs)
 
@@ -84,21 +84,22 @@ class pubapi():
   pairs = ['XXBTZUSD', 'XXBTZEUR', 'XXBTZGBP'];
   pairstring = ",".join(pairs)
   pubapi.connects(url, "/0/public/Ticker" + "?pair=" + pairstring, "Ticker", pairs)
- 	 for meth in range(len(methods)):
+  for meth in range(len(methods)):
    for pair in range(len(pairs)):
     path = "/0/public/%s" % methods[meth] + "?pair=" + pairs[pair]
     pubapi.connects(url, path, methods[meth], pairs[pair])
+ #end trades
 
 ###
 ## for testing
-#pubapi.btce()
+pubapi.btce()
 #pubapi.bitfinex()
 #pubapi.btcchina()
 #pubapi.kraken()
 
-############ For Private API ##############
+############ Private API ##############
 ### Code From:
-# -*- coding: utf-8 -*-
+## -*- coding: utf-8 -*-
 ## Author:      t0pep0
 ## e-mail:      t0pep0.gentoo@gmail.com
 ## Jabber:      t0pep0@jabber.ru
