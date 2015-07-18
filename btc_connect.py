@@ -34,11 +34,7 @@ class pubapi():
   for meth in range(len(methods)):
    con_list.append("/api/3/%s" % methods[meth] + "/" + pairstring + "?" + url_values)
   pubapi.connects(url, con_list, methods, pairs)
-<<<<<<< HEAD
   
-=======
-
->>>>>>> 0f78bbaab9cb0f2b031812a5ceab2a9a80f197bd
  def bitfinex(url = "api.bitfinex.com"):
   ## ~1/sec
   ## https://api.bitfinex.com/v1/pubticker/btcusd
@@ -67,13 +63,10 @@ class pubapi():
   trades_values = urllib.parse.urlencode(tparams)
   con_list = []
   ## Ticker (breaks filter)
-<<<<<<< HEAD
   # pubapi.connects(url, "/data/ticker?market=all", "ticker", ("ticker_" for n in range(len(pairs))))
   con_list = []
-=======
   #pubapi.connects(url, "/data/ticker?market=all", "ticker", ("ticker_" for n in range(len(pairs))))
   con_list.append("/data/ticker?market=all") # could break if more trades added
->>>>>>> 0f78bbaab9cb0f2b031812a5ceab2a9a80f197bd
   for pair in range(len(pairs)):
    con_list.append("/data/%s" % methods[0] + "?market=" + pairs[pair] + "&" + ob_values)
   #for pair in range(len(pairs)): 
