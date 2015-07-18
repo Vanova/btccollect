@@ -5,25 +5,38 @@ import time
 
 class filters():
 
-## btce
-# orderbook:
-#	data[pair]["asks","bids"][n,n]
-# trades:
-#	data[pair]
-
  def btce(m,p,jd):
   stamp=time.time()
   for l in range(len(m)):
    print('btce: ', m[l], p)
    mongo.mdump('btce', m[l], stamp, jd)
-   ## ?mongo.closeconnection()
-  
+
  def bitfinex(m,p,jd):
-  
+  stamp=time.time()
+  count=0
+  for l in range(len(m)):
+   for n in range(len(p)):
+    print('btce: ', m[l], p[count])
+    mongo.mdump('btce', m[l], stamp, p[count], jd)
+    count+=1
 
  def btcchina(m,p,jd):
+  stamp=time.time()
+  count=0
+  for l in range(len(m)):
+   for n in range(len(p)):
+    print('btce: ', m[l], p[count])
+    mongo.mdump('btce', m[l], stamp, p[count], jd)
+    count+=1
 
  def kraken(m,p,jd):
+  stamp=time.time()
+  count=0
+  for l in range(len(m)):
+   for n in range(len(p)):
+    print('btce: ', m[l], p[count])
+    mongo.mdump('btce', m[l], stamp, p[count], jd)
+    count+=1
 
  def jfstart(url, meth, pair, jsdata):
   exchanges = {"btc-e.com":"btce",
@@ -47,9 +60,12 @@ class mongo():
   print(coll)
   return coll
 
- def mdump(mpath, m, stamp, jd):
-  mongo.dbc(mpath,m).insert_one({stamp:{jd}}).inserted_id ###### DB.COLL.UTC[JDATA]
-  print('To DB: ',mongo.dbc(mpath,m,stamp))
+ def mdump(mpath, m, stamp, p*, jd):
+  if p:
+   mongo.dbc(mpath,m).insert_one({stamp:{p:{{jd}}}).inserted_id
+   print('To DB: ',mongo.dbc(mpath,m),p,stamp)
+  mongo.dbc(mpath,m).insert_one({stamp:{jd}}).inserted_id
+  print('To DB: ',mongo.dbc(mpath,m),stamp)
   
 ## Client Connection
 # uri = "mongodb://myuser:mypass@sub.server.com:0000/mydb"
