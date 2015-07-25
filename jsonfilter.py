@@ -1,79 +1,88 @@
 from pymongo import MongoClient
 import time
 
-#################### VERY rough draft.. not working.
-## To Do: global timestamp, open mongo on method - close at end
+#################### VERY rough draft.
+## To Do: global timestamp init, open mongo on method - close at end
 
 class filters():
+ ## data setup
+ 
+ def btce(db,jd):
+  stamp = str(time.time())
+  datas = {}
+  for l in range(len(jd)): # best way to create keys?
+   datas.update({jd[l]['meth']:{}})
+  for i in range(len(jd)):
+   for p in jd[i]['pair']:
+    datas[jd[i]['meth']].update({p:jd[i]['datas'][p]})
+  for m in datas.keys():
+   datas[m].update({'time':stamp})
+   mongo.dbc(db,m).insert_one(datas[m]).inserted_id
 
- def btce(m,p,jd):
-  stamp = time.time()
-  for l in range(len(m)):
-   print('btce: ', m[l], p)
-   mongo.mdump('btce', m[l], stamp, jd)
+ def bitfinex(db,jd):
+  stamp = str(time.time())
+  datas = {}
+  for l in range(len(jd)): # best way to create keys?
+   datas.update({jd[l]['meth']:{}})
+  for i in range(len(jd)):
+   datas[jd[i]['meth']].update({jd[i]['pair']:jd[i]['datas']})
+  for m in datas.keys():
+   datas[m].update({'time':stamp})
+   mongo.dbc(db,m).insert_one(datas[m]).inserted_id
+	
+ def btcchina(db,jd):
+  stamp = str(time.time())
+  datas = {}
+  for l in range(len(jd)): # best way to create keys?
+   datas.update({jd[l]['meth']:{}})
+  for i in range(len(jd)):
+   if jd[i]['meth']=='ticker':
+    for p in jd[i]['pair']:
+     datas[jd[i]['meth']].update({p:jd[i]['datas'][p]})
+   else:
+    datas[jd[i]['meth']].update({jd[i]['pair']:jd[i]['datas']})  
+  for m in datas.keys():
+   datas[m].update({'time':stamp})
+   mongo.dbc(db,m).insert_one(datas[m]).inserted_id
 
- def bitfinex(m,p,jd):
-  stamp = time.time()
-  count=0
-  for l in range(len(m)):
-   for n in range(len(p)):
-    print('btce: ', m[l], p[count])
-    mongo.mdump('btce', m[l], stamp, jd, p[count])
-    count+=1
-
- def btcchina(m,p,jd):
-  stamp = time.time()
-  count=0
-  for l in range(len(m)):
-   for n in range(len(p)):
-    print('btce: ', m[l], p[count])
-    mongo.mdump('btce', m[l], stamp, jd, p[count])
-    count+=1
-
- def kraken(m,p,jd):
-  stamp = time.time()
-  count=0
-  for l in range(len(m)):
-   for n in range(len(p)):
-    print('btce: ', m[l], p[count])
-    mongo.mdump('btce', m[l], stamp, jd, p[count])
-    count+=1
-
- def jfstart(url, meth, pair, jsdata):
-  exchanges = {"btc-e.com":"btce",
-						"api.bitfinex.com":"bitfinex",
-						"data.btcchina.com":"btcchina",
-						"api.kraken.com":"kraken"}
-
-  method = exchanges[url]
-  if method=='btce':filters.btce(meth, pair, jsdata)
-  if method=='bitfinex':filters.bitfinex(meth, pair, jsdata)
-  if method=='btcchina':filters.btcchina(meth, pair, jsdata)
-  if method=='kraken':filters.kraken(meth, pair, jsdata)
+ def jfstart(url, jdata):
+  exchanges = {'btc-e.com':'btce',
+						'api.bitfinex.com':'bitfinex',
+						'data.btcchina.com':'btcchina',
+						'api.kraken.com':'kraken'}
+  
+  if exchanges[url]=='btce':filters.btce(exchanges[url], jdata)
+  if exchanges[url]=='bitfinex':filters.bitfinex(exchanges[url], jdata)
+  if exchanges[url]=='btcchina':filters.btcchina(exchanges[url], jdata)
 
 class mongo():
-
  ## Database.Collection
  def dbc(dbase,collection):
   # uri = "mongodb://myuser:mypass@sub.server.com:0000/mydb"
   # client = MongoClient(uri) # uri connection option.
   client = MongoClient('localhost', 27017) # standard connection
   
-  db = client[dbase] #client.dbase / db = client['test-database'] - dictionary access 
-  coll = db[collection]  # collection = db['test-collection']
-  print(coll)
+  db = client[dbase] #client.dbase / db = client['test-database'] - dictionary access  /  Labled as trade
+  coll = db[collection]  # collection = db['test-collection']  /  Labled as method
+  print('DBACCESS: ', coll)
   return coll
 
- def mdump(mpath, m, stamp, jd, p=0):
-  if p == 0:
-   data = [{'time':stamp},[jd]]
+'''
+ def mdump(mpath, m, stamp, jd, p):
+  print(type(p), len(p))
+  data = {}
+  if type(p) is list:
+   for n in range(len(p)):
+    data.update({p[n]:jd[p[n]]})
+   data.update({'time':stamp})
    mongo.dbc(mpath,m).insert_one(data).inserted_id
-   print('To DB: ',mongo.dbc(mpath,m))
+   print('DATAS: ', p, data)
   else:
-   data = {'time':stamp,p:jd}
+   data.update({'time':stamp})
+   data.update(jd[p])
    mongo.dbc(mpath,m).insert_one(data).inserted_id
-   print('To DB: ',mongo.dbc(mpath,m))
-
+   print('DATAS: ', p, data)
+'''
 
 
 """

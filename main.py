@@ -4,8 +4,7 @@ from queue import Queue
 import time
 import btc_connect
 
-## Draft - Will need to change a lot of this :)
-## To Do: exceptions, loop breaks, csv reader for timer values (config), ...
+## To Do: exceptions, loop breaks, csv reader for timer values & trades (config), various commands...
 
 print_lock = threading.Lock()
 
@@ -53,7 +52,7 @@ def main(args):
 	print('Time:',time.time()-start)
 
 q = Queue()
-for x in range(3):
+for x in range(5):
  t = threading.Thread(target = threader)
  t.daemon = True
  t.start()
