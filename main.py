@@ -18,6 +18,8 @@ def job(worker):
  with print_lock:
   print(threading.current_thread().name,worker)
 
+
+# todo: hese should push threads and then delay to avoid the delay of the function.
 def t_btce():
  while True:
   btc_connect.pubapi.btce()
@@ -40,7 +42,7 @@ def threader():
   q.task_done()
 
 def main(args):
-
+ #rework for delay compensation
 	start = time.time() # start threads
 
 	q.put('btce')

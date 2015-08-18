@@ -2,7 +2,7 @@ from pymongo import MongoClient
 import time
 
 #################### VERY rough draft.
-## To Do: global timestamp init, open mongo on method - close at end
+## To Do: global timestamp init, open mongo on method - close at end, work on objectifying class
 
 class filters():
  ## data setup

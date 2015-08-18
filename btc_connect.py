@@ -1,7 +1,7 @@
 import urllib.request, urllib.parse, urllib.error
 import http.client
 # import simplejson as json
-import json	# replace w/ ujson or simplejson? (needs C binary)
+import json	 # replace w/ ujson or simplejson? (needs C binary)
 import jsonfilter
 
 ############ Public API ##############
