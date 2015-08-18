@@ -1,10 +1,10 @@
 # btccollect
-Collects Public API Information from various BTC Exchanges
+Collects Public API Information from various BTC Exchanges and pushes to a mongoDB
 
 Planned:
-  - JSON Comparison for new db objects (to help with db size)
-  - MongoDB with pymongo
+  - JSON Comparison for new db objects (trades, ob values)(to help with db size)
   - Pandas and Monary integration for DataFrames
   - WebSocket (Tornado?)
-
-Project will not be posted here fully and is missing pieces for it to work. Please send me a message to ask about parts not on git if you're interested. I will post a better explanation of all of the classes as they are completed :)
+  - Graphing?
+  
+If you happen to stumble on this project, I would love some advice/suggestions!
