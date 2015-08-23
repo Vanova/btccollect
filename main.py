@@ -19,7 +19,7 @@ def job(worker):
   print(threading.current_thread().name,worker)
 
 
-# todo: hese should push threads and then delay to avoid the delay of the function.
+# todo: these should push threads and THEN delay to avoid the delay of the function.
 def t_btce():
  while True:
   btc_connect.pubapi.btce()
