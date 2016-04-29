@@ -18,22 +18,21 @@ def job(worker):
  with print_lock:
   print(threading.current_thread().name,worker)
 
-
-# todo: these should push threads and THEN delay to avoid the delay of the function.
+# add exit and error management
 def t_btce():
  while True:
   btc_connect.pubapi.btce()
-  time.sleep(15)
+  time.sleep(15) #replace with variable from config
  
 def t_bitfinex():
  while True:
   btc_connect.pubapi.bitfinex()
-  time.sleep(15)
+  time.sleep(15) #replace with variable from config
 
 def t_btcchina():
  while True:
   btc_connect.pubapi.btcchina()
-  time.sleep(15)
+  time.sleep(15) #replace with variable from config
 
 def threader():
  while True:
@@ -43,21 +42,21 @@ def threader():
 
 def main(args):
  #rework for delay compensation
-	start = time.time() # start threads
+ start = time.time() # start threads
 
-	q.put('btce')
-	q.put('bitfinex')
-	q.put('btcchina')
+ q.put('btce')
+ q.put('bitfinex')
+ q.put('btcchina')
 
-	q.join() # at thread terminate
+ q.join() # at thread terminate
 
-	print('Time:',time.time()-start)
+ print('Time:',time.time()-start)
 
 q = Queue()
 for x in range(5):
  t = threading.Thread(target = threader)
  t.daemon = True
  t.start()
-	 
+ 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+ main(sys.argv[1:])
